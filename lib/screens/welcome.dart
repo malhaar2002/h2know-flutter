@@ -40,11 +40,11 @@ class Home extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
-              OutlinedButton(
+              ElevatedButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 70.0,
+                    horizontal: 60.0,
                     vertical: 10.0
                   ),
                   primary: Colors.black,
