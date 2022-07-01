@@ -16,6 +16,7 @@ class RegisterFormField extends StatelessWidget {
           ),
           hintText: placeholder,
         ),
+        style: const TextStyle(fontSize: 15),
       ),
     );
   }

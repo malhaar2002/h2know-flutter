@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/register_form_field.dart';
+import 'login.dart';
 
 class Register extends StatelessWidget {
   const Register ({super.key});
@@ -55,13 +56,18 @@ class Register extends StatelessWidget {
                 const SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Already have an account? '
                     ),
-                    Text(
-                      'Sign in',
-                      style: TextStyle(color: Color(0xFF50C2C9)),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Login()));
+                      },
+                      child: const Text(
+                        'Sign in',
+                        style: TextStyle(color: Color(0xFF50C2C9)),
+                      ),
                     )
                   ],
                 )
