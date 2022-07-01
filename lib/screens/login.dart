@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:h2know_flutter/screens/dashboard.dart';
 import 'package:h2know_flutter/widgets/register_form_field.dart';
 
 import 'register.dart';
@@ -28,7 +29,9 @@ class Login extends StatelessWidget {
               const RegisterFormField(placeholder: 'Password'),
               const SizedBox(height: 40),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Dashboard()));
+                },
                 style: TextButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 100.0,
