@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:h2know_flutter/screens/dashboard.dart';
+import 'package:h2know_flutter/screens/ranking.dart';
 
 class NavDrawer extends StatelessWidget {
   const NavDrawer({super.key});
@@ -37,7 +39,9 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Dashboard'),
-            onTap: () => {},
+            onTap: () => {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Dashboard()))
+            },
           ),
           ListTile(
             leading: const Icon(Icons.emoji_people),
@@ -57,7 +61,9 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.auto_graph),
             title: const Text('Rankings'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => RankingGraph())),
+            },
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
