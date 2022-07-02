@@ -7,22 +7,22 @@ class RankingGraph extends StatelessWidget {
   RankingGraph({super.key});
   final List<RankingModel> data = [
   RankingModel(
-    floor: "1",
+    floor: "Floor 1",
     volume: 50,
     color: charts.ColorUtil.fromDartColor(const Color(0xFF2D8BBA)),
   ),
   RankingModel(
-    floor: "2",
+    floor: "Floor 2",
     volume: 45,
     color: charts.ColorUtil.fromDartColor(const Color(0xFF41B8D5)),
   ),
   RankingModel(
-    floor: "3",
+    floor: "Floor 3",
     volume: 60,
     color: charts.ColorUtil.fromDartColor(const Color(0xFF6CE5E8)),
   ),
   RankingModel(
-    floor: "4",
+    floor: "Floor 4",
     volume: 55,
     color: charts.ColorUtil.fromDartColor(const Color(0xFF50C2C9)),
   ),
