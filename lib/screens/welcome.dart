@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'register.dart';
 
-class Home extends StatelessWidget {
-  const Home ({super.key});
+class Welcome extends StatelessWidget {
+  const Welcome ({super.key});
+  static const id = "welcome";
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class Home extends StatelessWidget {
               const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Register()));
+                  Navigator.pushNamed(context, Register.id);
                 },
                 style: TextButton.styleFrom(
                   padding: const EdgeInsets.symmetric(

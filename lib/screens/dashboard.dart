@@ -3,6 +3,7 @@ import 'package:h2know_flutter/widgets/navdrawer.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
+  static const id = 'dashboard';
 
   @override
   Widget build(BuildContext context) {

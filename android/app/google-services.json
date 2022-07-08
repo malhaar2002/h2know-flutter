@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "22481249145",
+    "project_id": "h2know-40972",
+    "storage_bucket": "h2know-40972.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22481249145:android:d4c1ba7e1d7f6c95e885a8",
+        "android_client_info": {
+          "package_name": "com.h2know.h2know_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22481249145-fl289hc3iuig25lpuo05foqqc34u9cr9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5UILE695vTOFR7BWsZWC8Zla2tvb5GwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22481249145-fl289hc3iuig25lpuo05foqqc34u9cr9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

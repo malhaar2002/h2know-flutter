@@ -40,7 +40,7 @@ class NavDrawer extends StatelessWidget {
             leading: const Icon(Icons.home),
             title: const Text('Dashboard'),
             onTap: () => {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Dashboard()))
+              Navigator.pushNamed(context, Dashboard.id)
             },
           ),
           ListTile(
@@ -62,7 +62,7 @@ class NavDrawer extends StatelessWidget {
             leading: const Icon(Icons.auto_graph),
             title: const Text('Rankings'),
             onTap: () => {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => RankingGraph())),
+              Navigator.pushNamed(context, RankingGraph.id)
             },
           ),
           ListTile(

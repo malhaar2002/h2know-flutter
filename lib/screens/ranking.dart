@@ -5,6 +5,7 @@ import 'package:h2know_flutter/widgets/navdrawer.dart';
 
 class RankingGraph extends StatelessWidget {
   RankingGraph({super.key});
+  static const id = 'ranking';
   final List<RankingModel> data = [
   RankingModel(
     floor: "Floor 1",
