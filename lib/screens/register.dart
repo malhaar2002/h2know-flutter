@@ -4,6 +4,9 @@ import 'package:h2know_flutter/screens/dashboard.dart';
 import 'package:h2know_flutter/widgets/register_form_field.dart';
 import 'package:h2know_flutter/screens/login.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:h2know_flutter/widgets/title_case.dart';
+import 'dart:convert';
 
 class Register extends StatefulWidget {
   const Register ({super.key});
@@ -15,9 +18,13 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final _auth = FirebaseAuth.instance;
+  final _firestore = FirebaseFirestore.instance;
   bool showSpinner = false;
   late String email;
+  late String fullName;
+  late var floorNo;
   late String password;
+  late String repeatPassword;
 
   @override
   Widget build(BuildContext context) {
@@ -48,18 +55,25 @@ class _RegisterState extends State<Register> {
                 RegisterFormField(
                   placeholder: 'Full Name',
                   keyboardType: TextInputType.name,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    fullName = value;
+                    fullName = fullName.toTitleCase();
+                  },
                 ),
                 RegisterFormField(
                   placeholder: 'Floor Number',
                   keyboardType: TextInputType.number,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    floorNo = value;
+                    floorNo = int.parse(floorNo);
+                  },
                 ),
                 RegisterFormField(
                   placeholder: 'Plaksha Email ID',
                   keyboardType: TextInputType.emailAddress,
                   onChanged: (value) {
                     email = value;
+                    email = email.toLowerCase();
                   },
                 ),
                 RegisterFormField(
@@ -74,7 +88,9 @@ class _RegisterState extends State<Register> {
                   placeholder: 'Confirm Password',
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    repeatPassword = value;
+                  },
                 ),
                 const SizedBox(height: 40),
                 ElevatedButton(
@@ -85,15 +101,35 @@ class _RegisterState extends State<Register> {
                       });
           
                       try {
-                        final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
-                          email: email,
-                          password: password,
-                        );
-                        Navigator.pushNamed(context, Dashboard.id);
-          
-                        setState(() {
-                          showSpinner = false;
-                        });
+
+                        if (password == repeatPassword) {
+
+                          // Create user account with firebase_auth
+                          final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+                            email: email,
+                            password: password,
+                          );
+
+                          // Add to firestore database under collection 'users'
+                          await _firestore.collection('users').add({
+                            'email': email,
+                            'floor_no': floorNo,
+                            'full_name': fullName,
+                          });
+
+                          Navigator.pushNamed(context, Dashboard.id);
+            
+                          setState(() {
+                            showSpinner = false;
+                          });
+
+                        } else {
+                          setState(() {
+                            showSpinner = false;
+                          });
+                          var snackBar = const SnackBar(content: Text("Password and Repeat Password do not match"));
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
           
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {

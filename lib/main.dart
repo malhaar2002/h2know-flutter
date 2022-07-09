@@ -4,6 +4,7 @@ import 'package:h2know_flutter/screens/login.dart';
 import 'package:h2know_flutter/screens/ranking.dart';
 import 'package:h2know_flutter/screens/register.dart';
 import 'package:h2know_flutter/screens/welcome.dart';
+import 'package:h2know_flutter/screens/profile.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() => runApp(const Home());
@@ -33,6 +34,7 @@ class Home extends StatelessWidget {
               Login.id:(context) => const Login(),
               RankingGraph.id: (context) => RankingGraph(),
               Dashboard.id:(context) => const Dashboard(),
+              Profile.id:(context) => Profile(),
             },
           );
         }

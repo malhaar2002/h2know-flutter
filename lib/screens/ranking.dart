@@ -41,7 +41,7 @@ class RankingGraph extends StatelessWidget {
       )
     ];
     return Scaffold(
-      drawer: const NavDrawer(),
+      drawer: NavDrawer(),
       appBar: AppBar(
         title: const Text('Rankings'),
       ),

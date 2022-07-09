@@ -9,7 +9,7 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      drawer: const NavDrawer(),
+      drawer: NavDrawer(),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,

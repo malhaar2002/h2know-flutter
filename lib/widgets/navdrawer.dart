@@ -1,9 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:h2know_flutter/screens/dashboard.dart';
+import 'package:h2know_flutter/screens/profile.dart';
 import 'package:h2know_flutter/screens/ranking.dart';
+import 'package:h2know_flutter/screens/welcome.dart';
 
 class NavDrawer extends StatelessWidget {
-  const NavDrawer({super.key});
+  NavDrawer({super.key});
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +50,9 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.emoji_people),
             title: const Text('Profile'),
-            onTap: () => {Navigator.of(context).pop()},
-          ),
-          ListTile(
-            leading: const Icon(Icons.shower),
-            title: const Text('My Shower'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.pushNamed(context, Profile.id)
+            },
           ),
           ListTile(
             leading: const Icon(Icons.people),
@@ -68,7 +69,10 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Logout'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              _auth.signOut(),
+              Navigator.pushNamed(context, Welcome.id)
+            },
           ),
         ],
       ),
