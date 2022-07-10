@@ -1,0 +1,68 @@
+import 'package:flutter/material.dart';
+import 'package:h2know_flutter/widgets/form_field.dart';
+import 'package:h2know_flutter/widgets/navdrawer.dart';
+import 'package:h2know_flutter/widgets/rounded_button.dart';
+
+class EditProfile extends StatefulWidget {
+  const EditProfile({super.key});
+  static const id = 'edit_profile';
+
+  @override
+  State<EditProfile> createState() => _EditProfileState();
+}
+
+class _EditProfileState extends State<EditProfile> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: NavDrawer(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: const IconThemeData(
+          color: Colors.black
+        ),
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Hero(
+                tag: 'profile_img',
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage('https://media.istockphoto.com/vectors/cute-panda-paws-up-over-wall-panda-face-cartoon-icon-vector-vector-id1162669873?k=20&m=1162669873&s=612x612&w=0&h=Vug2BRV7LEdrUNLp1rwSlpUNa0Vv7qh-l4hI1eDk2vw='),
+                  radius: 70,
+                ),
+              ),
+              const SizedBox(height: 40),
+              CustomFormField(
+                placeholder: 'Full Name',
+                onChanged: (value) {},
+                keyboardType: TextInputType.name,
+              ),
+              const SizedBox(height: 10),
+              CustomFormField(
+                placeholder: 'Email Address',
+                onChanged: (value) {},
+                keyboardType: TextInputType.emailAddress,
+              ),
+              const SizedBox(height: 10),
+              CustomFormField(
+                placeholder: 'Floor Number',
+                onChanged: (value) {},
+                keyboardType: TextInputType.number,
+              ),
+              const SizedBox(height: 50),
+              RoundedButton(
+                text: 'Update Profile',
+                onPressed: (){},
+                colour: const Color(0xFF50C2C9),
+              )
+            ],
+          )
+        ),
+      ),
+    );
+  }
+}

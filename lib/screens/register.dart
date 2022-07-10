@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:h2know_flutter/screens/dashboard.dart';
-import 'package:h2know_flutter/widgets/register_form_field.dart';
+import 'package:h2know_flutter/widgets/form_field.dart';
 import 'package:h2know_flutter/screens/login.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -52,7 +52,7 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                RegisterFormField(
+                CustomFormField(
                   placeholder: 'Full Name',
                   keyboardType: TextInputType.name,
                   onChanged: (value) {
@@ -60,7 +60,8 @@ class _RegisterState extends State<Register> {
                     fullName = fullName.toTitleCase();
                   },
                 ),
-                RegisterFormField(
+                const SizedBox(height: 10),
+                CustomFormField(
                   placeholder: 'Floor Number',
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
@@ -68,7 +69,8 @@ class _RegisterState extends State<Register> {
                     floorNo = int.parse(floorNo);
                   },
                 ),
-                RegisterFormField(
+                const SizedBox(height: 10),
+                CustomFormField(
                   placeholder: 'Plaksha Email ID',
                   keyboardType: TextInputType.emailAddress,
                   onChanged: (value) {
@@ -76,7 +78,8 @@ class _RegisterState extends State<Register> {
                     email = email.toLowerCase();
                   },
                 ),
-                RegisterFormField(
+                const SizedBox(height: 10),
+                CustomFormField(
                   placeholder: 'Password',
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
@@ -84,7 +87,8 @@ class _RegisterState extends State<Register> {
                     password = value;
                   },
                 ),
-                RegisterFormField(
+                const SizedBox(height: 10),
+                CustomFormField(
                   placeholder: 'Confirm Password',
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,

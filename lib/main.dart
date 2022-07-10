@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:h2know_flutter/screens/dashboard.dart';
+import 'package:h2know_flutter/screens/edit_profile.dart';
 import 'package:h2know_flutter/screens/login.dart';
 import 'package:h2know_flutter/screens/ranking.dart';
 import 'package:h2know_flutter/screens/register.dart';
@@ -27,14 +28,15 @@ class Home extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            initialRoute: Welcome.id,
+            initialRoute: EditProfile.id,
             routes: {
               Welcome.id:(context) => const Welcome(),
               Register.id:(context) => const Register(),
               Login.id:(context) => const Login(),
               RankingGraph.id: (context) => RankingGraph(),
               Dashboard.id:(context) => const Dashboard(),
-              Profile.id:(context) => Profile(),
+              Profile.id:(context) => const Profile(),
+              EditProfile.id:(context) => const EditProfile(),
             },
           );
         }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:h2know_flutter/screens/edit_profile.dart';
 import 'package:h2know_flutter/widgets/navdrawer.dart';
 import 'package:h2know_flutter/widgets/rounded_button.dart';
 import 'package:h2know_flutter/models/profile_data.dart';
@@ -106,9 +107,12 @@ class _ProfileState extends State<Profile> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const CircleAvatar(
-                backgroundImage: NetworkImage('https://media.istockphoto.com/vectors/cute-panda-paws-up-over-wall-panda-face-cartoon-icon-vector-vector-id1162669873?k=20&m=1162669873&s=612x612&w=0&h=Vug2BRV7LEdrUNLp1rwSlpUNa0Vv7qh-l4hI1eDk2vw='),
-                radius: 50,
+              const Hero(
+                tag: 'profile_img',
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage('https://media.istockphoto.com/vectors/cute-panda-paws-up-over-wall-panda-face-cartoon-icon-vector-vector-id1162669873?k=20&m=1162669873&s=612x612&w=0&h=Vug2BRV7LEdrUNLp1rwSlpUNa0Vv7qh-l4hI1eDk2vw='),
+                  radius: 50,
+                ),
               ),
               const SizedBox(height: 24),
               const Text(
@@ -130,7 +134,9 @@ class _ProfileState extends State<Profile> {
               const SizedBox(height: 24),
               RoundedButton(
                 text: 'Update Profile',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, EditProfile.id);
+                },
                 colour: Colors.blueAccent,
               ),
               const SizedBox(height: 24),

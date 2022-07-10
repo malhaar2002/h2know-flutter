@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:h2know_flutter/screens/dashboard.dart';
-import 'package:h2know_flutter/widgets/register_form_field.dart';
+import 'package:h2know_flutter/widgets/form_field.dart';
 import 'package:h2know_flutter/screens/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -39,14 +39,14 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 Image.asset('assets/images/login-image.png'),
-                RegisterFormField(
+                CustomFormField(
                   placeholder: 'Plaksha Email ID',
                   keyboardType: TextInputType.emailAddress,
                   onChanged: (value) {
                     email = value;
                   },
                 ),
-                RegisterFormField(
+                CustomFormField(
                   placeholder: 'Password',
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
