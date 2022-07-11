@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:h2know_flutter/widgets/form_field.dart';
 import 'package:h2know_flutter/widgets/navdrawer.dart';
 import 'package:h2know_flutter/widgets/rounded_button.dart';
+import 'package:h2know_flutter/widgets/text_field.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
@@ -23,10 +23,10 @@ class _EditProfileState extends State<EditProfile> {
           color: Colors.black
         ),
       ),
-      body: Center(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Hero(
                 tag: 'profile_img',
@@ -35,22 +35,22 @@ class _EditProfileState extends State<EditProfile> {
                   radius: 70,
                 ),
               ),
-              const SizedBox(height: 40),
-              CustomFormField(
-                placeholder: 'Full Name',
-                onChanged: (value) {},
+              const SizedBox(height: 50),
+              const CustomTextField(
+                text: 'Malhaar Arora',
+                label: 'Full Name',
                 keyboardType: TextInputType.name,
               ),
-              const SizedBox(height: 10),
-              CustomFormField(
-                placeholder: 'Email Address',
-                onChanged: (value) {},
+              const SizedBox(height: 30),
+              const CustomTextField(
+                text: 'malhaar.arora@plaksha.edu.in',
+                label: 'Email Address',
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 10),
-              CustomFormField(
-                placeholder: 'Floor Number',
-                onChanged: (value) {},
+              const SizedBox(height: 30),
+              const CustomTextField(
+                text: '3',
+                label: 'Floor Number',
                 keyboardType: TextInputType.number,
               ),
               const SizedBox(height: 50),
@@ -60,7 +60,7 @@ class _EditProfileState extends State<EditProfile> {
                 colour: const Color(0xFF50C2C9),
               )
             ],
-          )
+          ),
         ),
       ),
     );
