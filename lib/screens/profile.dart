@@ -21,6 +21,7 @@ class _ProfileState extends State<Profile> {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
   var loggedInUser;
+  var loggedInUserName;
 
   final List<ProfileModel> data = [
     ProfileModel(
@@ -60,13 +61,7 @@ class _ProfileState extends State<Profile> {
     ),
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    getCurrentUser();
-  }
-
-  void getCurrentUser() async {
+  getCurrentUser() async {
     try{
       final user = await _auth.currentUser;
       if (user != null) {
@@ -77,8 +72,21 @@ class _ProfileState extends State<Profile> {
     }
   }
 
-  void getName() async {
-    final data = await _firestore.collection('users').snapshots();
+  getFullName() async {
+    await getCurrentUser();
+    await _firestore
+    .collection('users')
+    .doc(loggedInUser.email)
+    .get()
+    .then((value) {
+      loggedInUserName = value.data()!['full_name'];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getFullName();
   }
 
   @override
@@ -86,7 +94,7 @@ class _ProfileState extends State<Profile> {
 
     List<charts.Series<ProfileModel, String>> series = [
       charts.Series(
-        id: "ranking",
+        id: "profile",
         data: data,
         domainFn: (ProfileModel series, _) => series.day,
         measureFn: (ProfileModel series, _) => series.volume,
@@ -94,146 +102,156 @@ class _ProfileState extends State<Profile> {
       )
     ];
 
-    return Scaffold(
-      drawer: NavDrawer(),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: const IconThemeData(
-          color: Colors.black
-        ),
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const Hero(
-                tag: 'profile_img',
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage('https://media.istockphoto.com/vectors/cute-panda-paws-up-over-wall-panda-face-cartoon-icon-vector-vector-id1162669873?k=20&m=1162669873&s=612x612&w=0&h=Vug2BRV7LEdrUNLp1rwSlpUNa0Vv7qh-l4hI1eDk2vw='),
-                  radius: 50,
-                ),
+    return FutureBuilder(
+      future: getFullName(),
+      builder:(context, snapshot) {
+        // if (snapshot.hasData) {
+          return Scaffold(
+            drawer: NavDrawer(),
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              iconTheme: const IconThemeData(
+                color: Colors.black
               ),
-              const SizedBox(height: 24),
-              const Text(
-                'Malhaar Arora',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Text(
-                'Level 1',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 15,
-                  color: Colors.grey,
-                ),
-              ),
-              const SizedBox(height: 24),
-              RoundedButton(
-                text: 'Update Profile',
-                onPressed: () {
-                  Navigator.pushNamed(context, EditProfile.id);
-                },
-                colour: Colors.blueAccent,
-              ),
-              const SizedBox(height: 24),
-              SizedBox(
-                height: 50,
-                width: double.infinity,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+            ),
+            body: Center(
+              child: SingleChildScrollView(
+                child: Column(
                   children: [
-                    Expanded(
-                      child: Column(
-                        children: const [
-                          Text(
-                            '100',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'Poppins',
+                    const Hero(
+                      tag: 'profile_img',
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage('https://media.istockphoto.com/vectors/cute-panda-paws-up-over-wall-panda-face-cartoon-icon-vector-vector-id1162669873?k=20&m=1162669873&s=612x612&w=0&h=Vug2BRV7LEdrUNLp1rwSlpUNa0Vv7qh-l4hI1eDk2vw='),
+                        radius: 50,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    Text(
+                      loggedInUserName,
+                      style: const TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Text(
+                      'Level 1',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 15,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    RoundedButton(
+                      text: 'Update Profile',
+                      onPressed: () {
+                        Navigator.pushNamed(context, EditProfile.id);
+                      },
+                      colour: Colors.blueAccent,
+                    ),
+                    const SizedBox(height: 24),
+                    SizedBox(
+                      height: 50,
+                      width: double.infinity,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              children: const [
+                                Text(
+                                  '100',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'Poppins',
+                                  ),
+                                ),
+                                Text(
+                                  'Today',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                    fontFamily: 'Poppins',
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Text(
-                            'Today',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 13,
-                              fontFamily: 'Poppins',
+                          const SizedBox(
+                            height: 24,
+                            child: VerticalDivider(color: Colors.black)
+                          ),
+                          Expanded(
+                            child: Column(
+                              children: const [
+                                Text(
+                                  '120',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'Poppins',
+                                  ),
+                                ),
+                                Text(
+                                  'Daily Average',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                    fontFamily: 'Poppins',
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 24,
+                            child: VerticalDivider(color: Colors.black,)
+                          ),
+                          Expanded(
+                            child: Column(
+                              children: const [
+                                Text(
+                                  '750',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'Poppins',
+                                  ),
+                                ),
+                                Text(
+                                  'Last 7 Days',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                    fontFamily: 'Poppins',
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 24,
-                      child: VerticalDivider(color: Colors.black)
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: const [
-                          Text(
-                            '120',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'Poppins',
-                            ),
-                          ),
-                          Text(
-                            'Daily Average',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 13,
-                              fontFamily: 'Poppins',
-                            ),
-                          ),
-                        ],
+                    Container(
+                      width: 500,
+                      height: 600,
+                      padding: const EdgeInsets.all(50),
+                      child: charts.BarChart(
+                        series,
+                        animate: true,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 24,
-                      child: VerticalDivider(color: Colors.black,)
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: const [
-                          Text(
-                            '750',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'Poppins',
-                            ),
-                          ),
-                          Text(
-                            'Last 7 Days',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 13,
-                              fontFamily: 'Poppins',
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  ),
                   ],
                 ),
               ),
-              Container(
-                width: 500,
-                height: 600,
-                padding: const EdgeInsets.all(50),
-                child: charts.BarChart(
-                  series,
-                  animate: true,
-                ),
             ),
-
-            ],
-          ),
-        ),
-      ),
+          );
+        // } else {
+        //   return const Center(
+        //     child: Text('Loading...'),
+        //   );
+        // }
+      },
     );
   }
 }

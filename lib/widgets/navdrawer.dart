@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:h2know_flutter/screens/dashboard.dart';
+import 'package:h2know_flutter/screens/my_floor.dart';
 import 'package:h2know_flutter/screens/profile.dart';
 import 'package:h2know_flutter/screens/ranking.dart';
 import 'package:h2know_flutter/screens/welcome.dart';
@@ -28,7 +29,7 @@ class NavDrawer extends StatelessWidget {
                     radius: 40,
                   ),
                   Text(
-                    'Welcome, Panda',
+                    'Welcome, Malhaar',
                     style: TextStyle(
                       fontFamily: 'Poppins',
                       color: Colors.white,
@@ -56,8 +57,10 @@ class NavDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.people),
-            title: const Text('Floor Data'),
-            onTap: () => {Navigator.of(context).pop()},
+            title: const Text('My Floor'),
+            onTap: () => {
+              Navigator.pushNamed(context, MyFloor.id)
+            },
           ),
           ListTile(
             leading: const Icon(Icons.auto_graph),

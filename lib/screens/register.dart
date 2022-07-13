@@ -115,18 +115,16 @@ class _RegisterState extends State<Register> {
                           );
 
                           // Add to firestore database under collection 'users'
-                          await _firestore.collection('users').add({
-                            'email': email,
-                            'floor_no': floorNo,
-                            'full_name': fullName,
+                          var collection = _firestore.collection('users');
+                          collection
+                          .doc(email)
+                          .set({'email': email, 'floor_no': floorNo, 'full_name': fullName})
+                          .then((value) {
+                            Navigator.pushNamed(context, Dashboard.id);
+                            setState(() {
+                              showSpinner = false;
+                            });
                           });
-
-                          Navigator.pushNamed(context, Dashboard.id);
-            
-                          setState(() {
-                            showSpinner = false;
-                          });
-
                         } else {
                           setState(() {
                             showSpinner = false;

@@ -43,7 +43,11 @@ class RankingGraph extends StatelessWidget {
     return Scaffold(
       drawer: NavDrawer(),
       appBar: AppBar(
-        title: const Text('Rankings'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: const IconThemeData(
+          color: Colors.black
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
