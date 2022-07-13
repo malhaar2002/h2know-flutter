@@ -97,6 +97,7 @@ class _MyFloorState extends State<MyFloor> {
                       style: TextStyle(fontFamily: 'Poppins'),
                     ),
                   ),
+                  const SizedBox(height: 5),
                   SizedBox(
                     height: 50,
                     width: double.infinity,
@@ -192,6 +193,7 @@ class _MyFloorState extends State<MyFloor> {
                       style: TextStyle(fontFamily: 'Poppins'),
                     ),
                   ),
+                  const SizedBox(height: 5),
                   SizedBox(
                     height: 50,
                     width: double.infinity,

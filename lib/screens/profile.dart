@@ -1,6 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:h2know_flutter/firestore_data.dart';
 import 'package:h2know_flutter/screens/edit_profile.dart';
 import 'package:h2know_flutter/widgets/navdrawer.dart';
 import 'package:h2know_flutter/widgets/rounded_button.dart';
@@ -17,11 +16,6 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-
-  final _auth = FirebaseAuth.instance;
-  final _firestore = FirebaseFirestore.instance;
-  var loggedInUser;
-  var loggedInUserName;
 
   final List<ProfileModel> data = [
     ProfileModel(
@@ -61,34 +55,6 @@ class _ProfileState extends State<Profile> {
     ),
   ];
 
-  getCurrentUser() async {
-    try{
-      final user = await _auth.currentUser;
-      if (user != null) {
-        loggedInUser = user;
-      }
-    } catch(e) {
-      print(e);
-    }
-  }
-
-  getFullName() async {
-    await getCurrentUser();
-    await _firestore
-    .collection('users')
-    .doc(loggedInUser.email)
-    .get()
-    .then((value) {
-      loggedInUserName = value.data()!['full_name'];
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getFullName();
-  }
-
   @override
   Widget build(BuildContext context) {
 
@@ -103,7 +69,7 @@ class _ProfileState extends State<Profile> {
     ];
 
     return FutureBuilder(
-      future: getFullName(),
+      future: getUserData(),
       builder:(context, snapshot) {
         // if (snapshot.hasData) {
           return Scaffold(
