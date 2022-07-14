@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:h2know_flutter/firestore_data.dart';
+import 'package:h2know_flutter/data/profile_info.dart';
 import 'package:h2know_flutter/screens/dashboard.dart';
 import 'package:h2know_flutter/screens/my_floor.dart';
 import 'package:h2know_flutter/screens/profile.dart';

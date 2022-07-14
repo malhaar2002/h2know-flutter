@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:h2know_flutter/firestore_data.dart';
+import 'package:h2know_flutter/data/personal_info.dart';
+import 'package:h2know_flutter/data/profile_info.dart';
 import 'package:h2know_flutter/screens/edit_profile.dart';
 import 'package:h2know_flutter/widgets/navdrawer.dart';
 import 'package:h2know_flutter/widgets/rounded_button.dart';
@@ -126,15 +127,20 @@ class _ProfileState extends State<Profile> {
                         children: [
                           Expanded(
                             child: Column(
-                              children: const [
-                                Text(
-                                  '100',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: 'Poppins',
-                                  ),
+                              children: [
+                                FutureBuilder(
+                                  future: getTodayVolume(),
+                                  builder:(context, snapshot) {
+                                    return Text(
+                                      todayVolume,
+                                      style: const TextStyle(
+                                        fontSize: 15,
+                                        fontFamily: 'Poppins',
+                                      ),
+                                    );  
+                                  },
                                 ),
-                                Text(
+                                const Text(
                                   'Today',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -151,15 +157,20 @@ class _ProfileState extends State<Profile> {
                           ),
                           Expanded(
                             child: Column(
-                              children: const [
-                                Text(
-                                  '120',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: 'Poppins',
-                                  ),
+                              children: [
+                                FutureBuilder(
+                                  future: getAvgVolume(),
+                                  builder: (context, snapshot) {
+                                    return Text(
+                                      avgVolume,
+                                      style: const TextStyle(
+                                        fontSize: 15,
+                                        fontFamily: 'Poppins',
+                                      ),
+                                    );
+                                  },
                                 ),
-                                Text(
+                                const Text(
                                   'Daily Average',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,

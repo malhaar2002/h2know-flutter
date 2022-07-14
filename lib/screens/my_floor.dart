@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:h2know_flutter/data/floor_info.dart';
 import 'package:h2know_flutter/models/profile_data.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:h2know_flutter/widgets/navdrawer.dart';
@@ -106,15 +107,20 @@ class _MyFloorState extends State<MyFloor> {
                       children: [
                         Expanded(
                           child: Column(
-                            children: const [
-                              Text(
-                                '1000',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Poppins',
-                                ),
+                            children: [
+                              FutureBuilder(
+                                future: getTodayFloor(),
+                                builder: (context, snapshot) {
+                                  return Text(
+                                    todayFloor,
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  );  
+                                },
                               ),
-                              Text(
+                              const Text(
                                 'Today',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -202,15 +208,20 @@ class _MyFloorState extends State<MyFloor> {
                       children: [
                         Expanded(
                           child: Column(
-                            children: const [
-                              Text(
-                                '100',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Poppins',
-                                ),
+                            children: [
+                              FutureBuilder(
+                                future: getTodayFloor(),
+                                builder: (context, snapshot) {
+                                  return Text(
+                                    todayIndividual,
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  );
+                                },
                               ),
-                              Text(
+                              const Text(
                                 "Today's Average",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,

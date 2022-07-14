@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:h2know_flutter/firestore_data.dart';
+import 'package:h2know_flutter/data/profile_info.dart';
 import 'package:h2know_flutter/widgets/navdrawer.dart';
 import 'package:h2know_flutter/widgets/rounded_button.dart';
 import 'package:h2know_flutter/widgets/text_field.dart';
