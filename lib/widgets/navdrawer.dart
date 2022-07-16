@@ -24,15 +24,16 @@ class NavDrawer extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://media.istockphoto.com/vectors/cute-panda-paws-up-over-wall-panda-face-cartoon-icon-vector-vector-id1162669873?k=20&m=1162669873&s=612x612&w=0&h=Vug2BRV7LEdrUNLp1rwSlpUNa0Vv7qh-l4hI1eDk2vw='),
-                    radius: 40,
+                  const Hero(
+                    tag: 'profile_img',
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage(
+                        'assets/images/profile_pic.jpg',
+                      ),
+                      radius: 40,
+                    ),
                   ),
-                  FutureBuilder(
-                    future: getUserData(),
-                    builder: (context, snapshot) {
-                      return Text(
+                      Text(
                         'Welcome, $loggedInUserName',
                         style: const TextStyle(
                           fontFamily: 'Poppins',
@@ -40,9 +41,7 @@ class NavDrawer extends StatelessWidget {
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
-                      );
-                    },
-                  ),
+                      )
                 ],
               ),
             ),

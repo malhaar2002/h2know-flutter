@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:h2know_flutter/data/current_user.dart';
 import 'package:h2know_flutter/data/profile_info.dart';
-import 'package:h2know_flutter/widgets/get_date.dart';
+import 'package:h2know_flutter/constants/get_date.dart';
 
 final _firestore = FirebaseFirestore.instance;
 
@@ -40,10 +39,36 @@ getTodayFloor() async {
     for (var doc in querySnapshot.docs) {
       bool sameFloorCheck = await checkSameFloor(doc['user_email']);
       if (sameFloorCheck) {
-        sum = sum + (doc['volume'].toDouble());
+        sum += (doc['volume'].toDouble());
       }
     }
     todayFloor = sum.toString();
-    todayIndividual = (sum/querySnapshot.size).toString();
+    if (querySnapshot.size != 0) todayIndividual = (sum/querySnapshot.size).toString();
+  });
+}
+
+getAvgFloor() async {
+  double sum = 0.0;
+  int ctrlInd = 0;
+  int ctrlFlr = 0;
+  List<String> visitedDates = [];
+  if (loggedInUser == 'null') await getUserData();
+  await _firestore
+  .collection('showers')
+  .get()
+  .then((QuerySnapshot querySnapshot) async {
+    for (var doc in querySnapshot.docs) {
+      bool sameFloorCheck = await checkSameFloor(doc['user_email']);
+      if (sameFloorCheck) {
+        sum += doc['volume'].toDouble();
+        ctrlInd++;
+        if (!visitedDates.contains(doc['date'])) {
+          ctrlFlr++;
+          visitedDates.add(doc['date']);
+        }
+      }
+    }
+    avgIndividual = (sum/ctrlInd).toString();
+    avgFloor = (sum/ctrlFlr).toString();
   });
 }

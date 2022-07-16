@@ -5,7 +5,7 @@ import 'package:h2know_flutter/widgets/form_field.dart';
 import 'package:h2know_flutter/screens/login.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:h2know_flutter/widgets/title_case.dart';
+import 'package:h2know_flutter/constants/title_case.dart';
 import 'dart:convert';
 
 class Register extends StatefulWidget {

@@ -89,7 +89,9 @@ class _ProfileState extends State<Profile> {
                     const Hero(
                       tag: 'profile_img',
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage('https://media.istockphoto.com/vectors/cute-panda-paws-up-over-wall-panda-face-cartoon-icon-vector-vector-id1162669873?k=20&m=1162669873&s=612x612&w=0&h=Vug2BRV7LEdrUNLp1rwSlpUNa0Vv7qh-l4hI1eDk2vw='),
+                        backgroundImage: AssetImage(
+                          'assets/images/profile_pic.jpg'
+                        ),
                         radius: 50,
                       ),
                     ),

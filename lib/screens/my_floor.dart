@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:h2know_flutter/constants/colours.dart';
 import 'package:h2know_flutter/data/floor_info.dart';
+import 'package:h2know_flutter/data/personal_info.dart';
 import 'package:h2know_flutter/models/profile_data.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:h2know_flutter/widgets/navdrawer.dart';
@@ -53,7 +55,6 @@ class _MyFloorState extends State<MyFloor> {
 
   @override
   Widget build(BuildContext context) {
-
     List<charts.Series<ProfileModel, String>> series = [
       charts.Series(
         id: "my_floor",
@@ -117,7 +118,7 @@ class _MyFloorState extends State<MyFloor> {
                                       fontSize: 15,
                                       fontFamily: 'Poppins',
                                     ),
-                                  );  
+                                  );
                                 },
                               ),
                               const Text(
@@ -132,18 +133,24 @@ class _MyFloorState extends State<MyFloor> {
                           ),
                         ),
                         const SizedBox(
-                            height: 24, child: VerticalDivider(color: Colors.black)),
+                            height: 24,
+                            child: VerticalDivider(color: Colors.black)),
                         Expanded(
                           child: Column(
-                            children: const [
-                              Text(
-                                '1200',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Poppins',
-                                ),
+                            children: [
+                              FutureBuilder(
+                                future: getAvgFloor(),
+                                builder: (context, snapshot) {
+                                  return Text(
+                                    avgFloor,
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  );
+                                },
                               ),
-                              Text(
+                              const Text(
                                 'Daily Average',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -212,11 +219,14 @@ class _MyFloorState extends State<MyFloor> {
                               FutureBuilder(
                                 future: getTodayFloor(),
                                 builder: (context, snapshot) {
+                                  bool todaySuccess = double.parse(todayVolume) <= double.parse(todayIndividual) ? true : false;
                                   return Text(
                                     todayIndividual,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 15,
                                       fontFamily: 'Poppins',
+                                      color: todaySuccess ? success : failure,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   );
                                 },
@@ -233,18 +243,27 @@ class _MyFloorState extends State<MyFloor> {
                           ),
                         ),
                         const SizedBox(
-                            height: 24, child: VerticalDivider(color: Colors.black)),
+                            height: 24,
+                            child: VerticalDivider(color: Colors.black)),
                         Expanded(
                           child: Column(
-                            children: const [
-                              Text(
-                                '120',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Poppins',
-                                ),
+                            children: [
+                              FutureBuilder(
+                                future: getAvgFloor(),
+                                builder: (context, snapshot) {
+                                  bool avgSuccess = double.parse(avgVolume) <= double.parse(avgIndividual) ? true : false;
+                                  return Text(
+                                    avgIndividual,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'Poppins',
+                                      color: avgSuccess ? success : failure,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  );
+                                },
                               ),
-                              Text(
+                              const Text(
                                 'Daily Average',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -268,6 +287,8 @@ class _MyFloorState extends State<MyFloor> {
                                 style: TextStyle(
                                   fontSize: 15,
                                   fontFamily: 'Poppins',
+                                  color: failure,
+                                  fontWeight: FontWeight.bold
                                 ),
                               ),
                               Text(

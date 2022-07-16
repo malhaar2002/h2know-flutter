@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:h2know_flutter/widgets/get_date.dart';
+import 'package:h2know_flutter/constants/get_date.dart';
 import 'package:h2know_flutter/data/current_user.dart';
 
 final _firestore = FirebaseFirestore.instance;
