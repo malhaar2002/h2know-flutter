@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:h2know_flutter/data/leaderboard_info.dart';
 import 'package:h2know_flutter/widgets/leaderboard_tile.dart';
 import 'package:h2know_flutter/widgets/navdrawer.dart';
 
@@ -18,11 +19,9 @@ class _LeaderboardState extends State<Leaderboard> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(
-          color: Colors.black
-        ),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: ListView(
+      body: Column(
         children: [
           const Align(
             alignment: Alignment.center,
@@ -44,11 +43,25 @@ class _LeaderboardState extends State<Leaderboard> {
             ),
           ),
           const SizedBox(height: 40),
-          const LeaderboardTile(name: 'Malhaar Arora', level: '5', rank: '1'),
-          const LeaderboardTile(name: 'Aditya Tyagi', level: '3', rank: '2'),
-          const LeaderboardTile(name: 'Surabhi Tannu', level: '2', rank: '3'),
-          const LeaderboardTile(name: 'Shubham Jain', level: '1', rank: '4', highlighted: true),
-          const LeaderboardTile(name: 'Spandan Panda', level: '1', rank: '4'),
+          // FIXME: Only Returning Shubham's Tile
+          FutureBuilder(
+            future: getNameAndLevel(),
+            builder: (context, snapshot) {
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: nameAndLevel.length,
+                itemBuilder: (context, index) {
+                  for (var k in nameAndLevel.keys) {
+                    return LeaderboardTile(
+                      name: k.toString(),
+                      level: nameAndLevel[k].toString(),
+                    );
+                  }
+                  return Container();
+                },
+              );
+            },
+          ),
         ],
       ),
     );

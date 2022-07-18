@@ -118,7 +118,7 @@ class _RegisterState extends State<Register> {
                           var collection = _firestore.collection('users');
                           collection
                           .doc(email)
-                          .set({'email': email, 'floor_no': floorNo, 'full_name': fullName})
+                          .set({'email': email, 'floor_no': floorNo, 'full_name': fullName, 'level':1})
                           .then((value) {
                             Navigator.pushNamed(context, SplashScreen.id);
                             setState(() {
