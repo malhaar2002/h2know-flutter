@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:h2know_flutter/screens/dashboard.dart';
+import 'package:h2know_flutter/screens/splash_screen.dart';
 import 'package:h2know_flutter/widgets/form_field.dart';
 import 'package:h2know_flutter/screens/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -67,7 +67,7 @@ class _LoginState extends State<Login> {
                         email: email,
                         password: password,
                       );
-                      Navigator.pushNamed(context, Dashboard.id);
+                      Navigator.pushNamed(context, SplashScreen.id);
 
                       setState(() {
                         showSpinner = false;

@@ -292,7 +292,7 @@ class _MyFloorState extends State<MyFloor> {
                                 ),
                               ),
                               Text(
-                                'Weekly Average',
+                                'Last 7 Days',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 12,

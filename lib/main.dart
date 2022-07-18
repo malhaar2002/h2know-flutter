@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:h2know_flutter/screens/dashboard.dart';
 import 'package:h2know_flutter/screens/edit_profile.dart';
+import 'package:h2know_flutter/screens/leaderboard.dart';
 import 'package:h2know_flutter/screens/login.dart';
 import 'package:h2know_flutter/screens/my_floor.dart';
 import 'package:h2know_flutter/screens/ranking.dart';
@@ -66,6 +67,7 @@ class _HomeState extends State<Home> {
         EditProfile.id: (context) => const EditProfile(),
         MyFloor.id: (context) => const MyFloor(),
         SplashScreen.id: (context) => const SplashScreen(),
+        Leaderboard.id: (context) => const Leaderboard(),
       },
     );
   }

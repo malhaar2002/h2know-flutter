@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:h2know_flutter/data/profile_info.dart';
 import 'package:h2know_flutter/screens/dashboard.dart';
+import 'package:h2know_flutter/screens/leaderboard.dart';
 import 'package:h2know_flutter/screens/my_floor.dart';
 import 'package:h2know_flutter/screens/profile.dart';
 import 'package:h2know_flutter/screens/ranking.dart';
@@ -49,29 +50,34 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Dashboard'),
-            onTap: () => {Navigator.pushNamed(context, Dashboard.id)},
+            onTap: () => Navigator.pushNamed(context, Dashboard.id)
           ),
           ListTile(
             leading: const Icon(Icons.emoji_people),
             title: const Text('Profile'),
-            onTap: () => {Navigator.pushNamed(context, Profile.id)},
+            onTap: () => Navigator.pushNamed(context, Profile.id)
+          ),
+          ListTile(
+            leading: const Icon(Icons.leaderboard),
+            title: const Text('Leaderboard'),
+            onTap: () => Navigator.pushNamed(context, Leaderboard.id)
           ),
           ListTile(
             leading: const Icon(Icons.people),
             title: const Text('My Floor'),
-            onTap: () => {Navigator.pushNamed(context, MyFloor.id)},
+            onTap: () => Navigator.pushNamed(context, MyFloor.id)
           ),
           ListTile(
             leading: const Icon(Icons.auto_graph),
             title: const Text('Rankings'),
-            onTap: () => {Navigator.pushNamed(context, RankingGraph.id)},
+            onTap: () => Navigator.pushNamed(context, RankingGraph.id)
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Logout'),
-            onTap: () => {
-              FirebaseAuth.instance.signOut(),
-              Navigator.pushNamed(context, Welcome.id)
+            onTap: () {
+              FirebaseAuth.instance.signOut();
+              Navigator.pushNamed(context, Welcome.id);
             },
           ),
         ],

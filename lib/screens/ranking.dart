@@ -73,7 +73,7 @@ class RankingGraph extends StatelessWidget {
                   const ListTile(
                     leading: Icon(Icons.arrow_drop_down_circle),
                     title: Text(
-                      'Cohort Stats',
+                      'University Stats',
                       style: TextStyle(fontFamily: 'Poppins'),
                     ),
                   ),
@@ -91,7 +91,7 @@ class RankingGraph extends StatelessWidget {
                                 future: getTodayRanking(),
                                 builder: (context, snapshot) {
                                   return Text(
-                                    todayCohort,
+                                    todayUniversity,
                                     style: const TextStyle(
                                       fontSize: 15,
                                       fontFamily: 'Poppins',
@@ -120,7 +120,7 @@ class RankingGraph extends StatelessWidget {
                                 future: getAvgRanking(),
                                 builder: (context, snapshot) {
                                   return Text(
-                                    averageCohort,
+                                    averageUniversity,
                                     style: const TextStyle(
                                       fontSize: 15,
                                       fontFamily: 'Poppins',
@@ -270,7 +270,7 @@ class RankingGraph extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'Weekly Average',
+                                'Last 7 Days',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 12,
