@@ -34,7 +34,6 @@ getAvgVolume() async {
     for (var doc in querySnapshot.docs) {
       sum = sum + (doc['volume'].toDouble());
     }
-    double avg = sum/querySnapshot.size;
-    avgVolume = avg.toString();
+    if (querySnapshot.size != 0) avgVolume = (sum/querySnapshot.size).toString();
   });
 }

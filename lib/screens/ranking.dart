@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:h2know_flutter/constants/colours.dart';
+import 'package:h2know_flutter/data/personal_info.dart';
 import 'package:h2know_flutter/models/ranking_data.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:h2know_flutter/widgets/navdrawer.dart';
+import 'package:h2know_flutter/data/ranking_info.dart';
 
 class RankingGraph extends StatelessWidget {
   RankingGraph({super.key});
@@ -83,15 +86,20 @@ class RankingGraph extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Column(
-                            children: const [
-                              Text(
-                                '10000',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Poppins',
-                                ),
+                            children: [
+                              FutureBuilder(
+                                future: getTodayRanking(),
+                                builder: (context, snapshot) {
+                                  return Text(
+                                    todayCohort,
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  );
+                                },
                               ),
-                              Text(
+                              const Text(
                                 'Today',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -107,15 +115,20 @@ class RankingGraph extends StatelessWidget {
                             child: VerticalDivider(color: Colors.black)),
                         Expanded(
                           child: Column(
-                            children: const [
-                              Text(
-                                '12000',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Poppins',
-                                ),
+                            children: [
+                              FutureBuilder(
+                                future: getAvgRanking(),
+                                builder: (context, snapshot) {
+                                  return Text(
+                                    averageCohort,
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  );
+                                },
                               ),
-                              Text(
+                              const Text(
                                 'Daily Average',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -180,15 +193,23 @@ class RankingGraph extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Column(
-                            children: const [
-                              Text(
-                                '100',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Poppins',
-                                ),
+                            children: [
+                              FutureBuilder(
+                                future: getTodayRanking(),
+                                builder: (context, snapshot) {
+                                  bool todaySuccess = double.parse(todayVolume) <= double.parse(todayIndividualRanking) ? true : false;
+                                  return Text(
+                                    todayIndividualRanking,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'Poppins',
+                                      color: todaySuccess ? success : failure,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  );
+                                },
                               ),
-                              Text(
+                              const Text(
                                 "Today's Average",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -204,15 +225,23 @@ class RankingGraph extends StatelessWidget {
                             child: VerticalDivider(color: Colors.black)),
                         Expanded(
                           child: Column(
-                            children: const [
-                              Text(
-                                '120',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Poppins',
-                                ),
+                            children: [
+                              FutureBuilder(
+                                future: getAvgRanking(),
+                                builder: (context, snapshot) {
+                                  bool avgSuccess = double.parse(avgVolume) <= double.parse(averageIndividualRanking) ? true : false;
+                                  return Text(
+                                    averageIndividualRanking,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'Poppins',
+                                      color: avgSuccess ? success : failure,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  );
+                                },
                               ),
-                              Text(
+                              const Text(
                                 'Daily Average',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -236,6 +265,8 @@ class RankingGraph extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 15,
                                   fontFamily: 'Poppins',
+                                  color: failure,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                               Text(

@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:h2know_flutter/screens/dashboard.dart';
+import 'package:h2know_flutter/screens/splash_screen.dart';
 import 'package:h2know_flutter/widgets/form_field.dart';
 import 'package:h2know_flutter/screens/login.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -120,7 +120,7 @@ class _RegisterState extends State<Register> {
                           .doc(email)
                           .set({'email': email, 'floor_no': floorNo, 'full_name': fullName})
                           .then((value) {
-                            Navigator.pushNamed(context, Dashboard.id);
+                            Navigator.pushNamed(context, SplashScreen.id);
                             setState(() {
                               showSpinner = false;
                             });

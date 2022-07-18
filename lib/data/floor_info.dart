@@ -68,7 +68,7 @@ getAvgFloor() async {
         }
       }
     }
-    avgIndividual = (sum/ctrlInd).toString();
-    avgFloor = (sum/ctrlFlr).toString();
+    if (ctrlInd != 0) avgIndividual = (sum/ctrlInd).toString();
+    if (ctrlFlr != 0) avgFloor = (sum/ctrlFlr).toString();
   });
 }
