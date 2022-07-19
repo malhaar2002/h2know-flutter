@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:h2know_flutter/constants/get_random.dart';
 import 'package:h2know_flutter/data/leaderboard_info.dart';
 import 'package:h2know_flutter/data/profile_info.dart';
 import 'package:h2know_flutter/widgets/leaderboard_tile.dart';
@@ -52,16 +53,17 @@ class _LeaderboardState extends State<Leaderboard> {
               nameAndLevelKeys = List.from(nameAndLevelKeys.reversed);
               return SingleChildScrollView(
                 child: Column(
-                  children: List.from(
-                    nameAndLevelKeys.map(
-                      (key) => LeaderboardTile(
-                        name: key.toString(),
-                        level: nameAndLevel[key].toString(),
-                        highlighted: key == loggedInUserName ? true : false,
-                        rank: (rank++).toString(),
-                      )
-                    )
-                  ),
+                  children: List.from(nameAndLevelKeys.map((key) {
+                    int rng = getRandom();
+                    return LeaderboardTile(
+                      name: key.toString(),
+                      level: nameAndLevel[key].toString(),
+                      highlighted: key == loggedInUserName ? true : false,
+                      rank: (rank++).toString(),
+                      pfpAsset: key == loggedInUserName ? true : false,
+                      pfpNetwork: NetworkImage('https://avatars.dicebear.com/api/avataaars/$rng.jpg'),
+                    );
+                  })),
                 ),
               );
             },

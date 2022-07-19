@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 class LeaderboardTile extends StatelessWidget {
   const LeaderboardTile({
     super.key,
-    this.pfp = const AssetImage('assets/images/profile_pic.jpg'),
+    this.pfpNetwork = const NetworkImage('https://avatars.dicebear.com/api/avataaars/100.svg'),
+    this.pfpAsset = false,
     this.name = '',
     this.level = '',
     this.rank = '',
     this.highlighted = false,
   });
 
-  final AssetImage pfp;
+  final ImageProvider<Object> pfpNetwork;
+  final bool pfpAsset;
   final String name;
   final String level;
   final String rank;
@@ -29,7 +31,7 @@ class LeaderboardTile extends StatelessWidget {
             child: ListTile(
               tileColor: highlighted? const Color(0xFFDFF0FF) : Theme.of(context).scaffoldBackgroundColor,
               leading: CircleAvatar(
-                backgroundImage: pfp,
+                backgroundImage: pfpAsset ? const AssetImage('assets/images/profile_pic.jpg') : pfpNetwork,
                 radius: 40,
               ),
               title: Text(

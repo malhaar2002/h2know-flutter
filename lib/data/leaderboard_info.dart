@@ -11,6 +11,5 @@ getNameAndLevel () async {
     for (var doc in querySnapshot.docs) {
       nameAndLevel.addAll({doc['full_name']:doc['level']});
     }
-    print(nameAndLevel);
   });
 }
