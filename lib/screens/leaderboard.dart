@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:h2know_flutter/data/leaderboard_info.dart';
+import 'package:h2know_flutter/data/profile_info.dart';
 import 'package:h2know_flutter/widgets/leaderboard_tile.dart';
 import 'package:h2know_flutter/widgets/navdrawer.dart';
 
@@ -43,22 +44,25 @@ class _LeaderboardState extends State<Leaderboard> {
             ),
           ),
           const SizedBox(height: 40),
-          // FIXME: Only Returning Shubham's Tile
           FutureBuilder(
             future: getNameAndLevel(),
             builder: (context, snapshot) {
-              return ListView.builder(
-                shrinkWrap: true,
-                itemCount: nameAndLevel.length,
-                itemBuilder: (context, index) {
-                  for (var k in nameAndLevel.keys) {
-                    return LeaderboardTile(
-                      name: k.toString(),
-                      level: nameAndLevel[k].toString(),
-                    );
-                  }
-                  return Container();
-                },
+              int rank = 1;
+              List nameAndLevelKeys = nameAndLevel.keys.toList();
+              nameAndLevelKeys = List.from(nameAndLevelKeys.reversed);
+              return SingleChildScrollView(
+                child: Column(
+                  children: List.from(
+                    nameAndLevelKeys.map(
+                      (key) => LeaderboardTile(
+                        name: key.toString(),
+                        level: nameAndLevel[key].toString(),
+                        highlighted: key == loggedInUserName ? true : false,
+                        rank: (rank++).toString(),
+                      )
+                    )
+                  ),
+                ),
               );
             },
           ),
