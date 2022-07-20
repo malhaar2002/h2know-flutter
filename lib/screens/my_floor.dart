@@ -168,15 +168,20 @@ class _MyFloorState extends State<MyFloor> {
                             )),
                         Expanded(
                           child: Column(
-                            children: const [
-                              Text(
-                                '7500',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Poppins',
-                                ),
+                            children: [
+                              FutureBuilder(
+                                future: getLast7DaysFloor(),
+                                builder: (context, snapshot) {
+                                  return Text(
+                                    last7DaysFloor,
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  );
+                                },
                               ),
-                              Text(
+                              const Text(
                                 'Last 7 Days',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -219,7 +224,11 @@ class _MyFloorState extends State<MyFloor> {
                               FutureBuilder(
                                 future: getTodayFloor(),
                                 builder: (context, snapshot) {
-                                  bool todaySuccess = double.parse(todayVolume) <= double.parse(todayIndividual) ? true : false;
+                                  bool todaySuccess =
+                                      double.parse(todayVolume) <=
+                                              double.parse(todayIndividual)
+                                          ? true
+                                          : false;
                                   return Text(
                                     todayIndividual,
                                     style: TextStyle(
@@ -251,7 +260,10 @@ class _MyFloorState extends State<MyFloor> {
                               FutureBuilder(
                                 future: getAvgFloor(),
                                 builder: (context, snapshot) {
-                                  bool avgSuccess = double.parse(avgVolume) <= double.parse(avgIndividual) ? true : false;
+                                  bool avgSuccess = double.parse(avgVolume) <=
+                                          double.parse(avgIndividual)
+                                      ? true
+                                      : false;
                                   return Text(
                                     avgIndividual,
                                     style: TextStyle(
@@ -281,17 +293,22 @@ class _MyFloorState extends State<MyFloor> {
                             )),
                         Expanded(
                           child: Column(
-                            children: const [
-                              Text(
-                                '750',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Poppins',
-                                  color: failure,
-                                  fontWeight: FontWeight.bold
-                                ),
+                            children: [
+                              FutureBuilder(
+                                future: getLast7DaysFloor(),
+                                builder: (context, snapshot) {
+                                  bool weekSuccess = double.parse(weekVolume) <= double.parse(last7DaysIndividual) ? true : false;
+                                  return Text(
+                                    last7DaysIndividual,
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontFamily: 'Poppins',
+                                        color: weekSuccess ? success : failure,
+                                        fontWeight: FontWeight.bold),
+                                  );
+                                },
                               ),
-                              Text(
+                              const Text(
                                 'Last 7 Days',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,

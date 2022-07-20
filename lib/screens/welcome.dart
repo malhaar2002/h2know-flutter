@@ -11,7 +11,6 @@ class Welcome extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // const SizedBox(width: double.infinity),
           Align(
             alignment: Alignment.topLeft,
             child: Image.asset('assets/images/top-left.png')

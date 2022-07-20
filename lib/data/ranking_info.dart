@@ -7,6 +7,8 @@ String todayUniversity = '0';
 String averageUniversity = '0';
 String todayIndividualRanking = '0';
 String averageIndividualRanking = '0';
+String lastWeekUniversity = '0';
+String lastWeekIndividual = '0';
 
 getTodayRanking() async {
   double sum = 0.0;
@@ -44,4 +46,19 @@ getAvgRanking() async {
     if (ctrlFlr != 0) averageUniversity = (sum/ctrlFlr).toString();
   });
  
+}
+
+getLastWeekRanking() async {
+  double sum = 0.0;
+  await _firestore
+  .collection('showers')
+  .where('date', whereIn: getLastWeekDates())
+  .get()
+  .then((QuerySnapshot querySnapshot) {
+    for (var doc in querySnapshot.docs) {
+      sum += doc['volume'].toDouble();
+    }
+    lastWeekUniversity = sum.toString();
+    if (querySnapshot.size != 0) lastWeekIndividual = (sum/querySnapshot.size).toString();
+  });
 }

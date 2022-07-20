@@ -146,15 +146,20 @@ class RankingGraph extends StatelessWidget {
                             )),
                         Expanded(
                           child: Column(
-                            children: const [
-                              Text(
-                                '75000',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Poppins',
-                                ),
+                            children: [
+                              FutureBuilder(
+                                future: getLastWeekRanking(),
+                                builder: (context, snapshot) {
+                                  return Text(
+                                    lastWeekUniversity,
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  );
+                                },
                               ),
-                              Text(
+                              const Text(
                                 'Last 7 Days',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -197,7 +202,11 @@ class RankingGraph extends StatelessWidget {
                               FutureBuilder(
                                 future: getTodayRanking(),
                                 builder: (context, snapshot) {
-                                  bool todaySuccess = double.parse(todayVolume) <= double.parse(todayIndividualRanking) ? true : false;
+                                  bool todaySuccess = double.parse(
+                                              todayVolume) <=
+                                          double.parse(todayIndividualRanking)
+                                      ? true
+                                      : false;
                                   return Text(
                                     todayIndividualRanking,
                                     style: TextStyle(
@@ -229,7 +238,10 @@ class RankingGraph extends StatelessWidget {
                               FutureBuilder(
                                 future: getAvgRanking(),
                                 builder: (context, snapshot) {
-                                  bool avgSuccess = double.parse(avgVolume) <= double.parse(averageIndividualRanking) ? true : false;
+                                  bool avgSuccess = double.parse(avgVolume) <=
+                                          double.parse(averageIndividualRanking)
+                                      ? true
+                                      : false;
                                   return Text(
                                     averageIndividualRanking,
                                     style: TextStyle(
@@ -259,17 +271,23 @@ class RankingGraph extends StatelessWidget {
                             )),
                         Expanded(
                           child: Column(
-                            children: const [
-                              Text(
-                                '750',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Poppins',
-                                  color: failure,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            children: [
+                              FutureBuilder(
+                                future: getLastWeekRanking(),
+                                builder: (context, snapshot) {
+                                  bool weekSuccess = double.parse(weekVolume) <= double.parse(lastWeekIndividual) ? true : false;
+                                  return Text(
+                                    lastWeekIndividual,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: 'Poppins',
+                                      color: weekSuccess ? success : failure,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  );
+                                },
                               ),
-                              Text(
+                              const Text(
                                 'Last 7 Days',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,

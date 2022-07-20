@@ -9,6 +9,8 @@ String todayFloor = '0';
 String todayIndividual = '0';
 String avgFloor = '0';
 String avgIndividual = '0';
+String last7DaysFloor = '0';
+String last7DaysIndividual = '0';
 
 Future<bool> checkSameFloor(String email) async {
   bool ans = false;
@@ -52,7 +54,7 @@ getAvgFloor() async {
   int ctrlInd = 0;
   int ctrlFlr = 0;
   List<String> visitedDates = [];
-  if (loggedInUser == 'null') await getUserData();
+  if (loggedInUser == null) await getUserData();
   await _firestore
   .collection('showers')
   .get()
@@ -70,5 +72,26 @@ getAvgFloor() async {
     }
     if (ctrlInd != 0) avgIndividual = (sum/ctrlInd).toString();
     if (ctrlFlr != 0) avgFloor = (sum/ctrlFlr).toString();
+  });
+}
+
+getLast7DaysFloor() async {
+  double sumFloor = 0.0;
+  int ctrl = 0;
+  if (loggedInUser == null) await getUserData();
+  await _firestore
+  .collection('showers')
+  .where('date', whereIn: getLastWeekDates())
+  .get()
+  .then((QuerySnapshot querySnapshot) async {
+    for (var doc in querySnapshot.docs) {
+      bool sameFloorCheck = await checkSameFloor(doc['user_email']);
+      if (sameFloorCheck) {
+        sumFloor += doc['volume'].toDouble();
+        ctrl++;
+      }
+    }
+    last7DaysFloor = sumFloor.toString();
+    if (ctrl != 0) last7DaysIndividual = (sumFloor/ctrl).toString();
   });
 }
