@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:h2know_flutter/constants/get_date.dart';
 import 'package:h2know_flutter/data/current_user.dart';
-import 'package:h2know_flutter/data/profile_info.dart';
 
 final _firestore = FirebaseFirestore.instance;
 
@@ -36,7 +35,7 @@ getAvgVolume() async {
     for (var doc in querySnapshot.docs) {
       sum = sum + (doc['volume'].toDouble());
     }
-    if (querySnapshot.size != 0) avgVolume = (sum/querySnapshot.size).toString();
+    if (querySnapshot.size != 0) avgVolume = (sum/querySnapshot.size).toStringAsFixed(2);
   });
 }
 

@@ -21,7 +21,7 @@ getTodayRanking() async {
       sum += doc['volume'].toDouble();
     }
     todayUniversity = sum.toString();
-    if (querySnapshot.size != 0) todayIndividualRanking = (sum/querySnapshot.size).toString();
+    if (querySnapshot.size != 0) todayIndividualRanking = (sum/querySnapshot.size).toStringAsFixed(2);
   });
 }
 
@@ -42,8 +42,8 @@ getAvgRanking() async {
         visitedDates.add(doc['date']);
       }
     }
-    if (ctrlInd != 0) averageIndividualRanking = (sum/ctrlInd).toString();
-    if (ctrlFlr != 0) averageUniversity = (sum/ctrlFlr).toString();
+    if (ctrlInd != 0) averageIndividualRanking = (sum/ctrlInd).toStringAsFixed(2);
+    if (ctrlFlr != 0) averageUniversity = (sum/ctrlFlr).toStringAsFixed(2);
   });
  
 }
@@ -59,6 +59,6 @@ getLastWeekRanking() async {
       sum += doc['volume'].toDouble();
     }
     lastWeekUniversity = sum.toString();
-    if (querySnapshot.size != 0) lastWeekIndividual = (sum/querySnapshot.size).toString();
+    if (querySnapshot.size != 0) lastWeekIndividual = (sum/querySnapshot.size).toStringAsFixed(2);
   });
 }

@@ -70,8 +70,8 @@ getAvgFloor() async {
         }
       }
     }
-    if (ctrlInd != 0) avgIndividual = (sum/ctrlInd).toString();
-    if (ctrlFlr != 0) avgFloor = (sum/ctrlFlr).toString();
+    if (ctrlInd != 0) avgIndividual = (sum/ctrlInd).toStringAsFixed(2);
+    if (ctrlFlr != 0) avgFloor = (sum/ctrlFlr).toStringAsFixed(2);
   });
 }
 
@@ -91,7 +91,7 @@ getLast7DaysFloor() async {
         ctrl++;
       }
     }
-    last7DaysFloor = sumFloor.toString();
-    if (ctrl != 0) last7DaysIndividual = (sumFloor/ctrl).toString();
+    last7DaysFloor = sumFloor.toStringAsFixed(2);
+    if (ctrl != 0) last7DaysIndividual = (sumFloor/ctrl).toStringAsFixed(2);
   });
 }

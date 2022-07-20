@@ -16,3 +16,14 @@ List<String> getLastWeekDates() {
   }
   return last7Days;
 }
+
+Map<String, String> getLastWeekDays() {
+  var now = DateTime.now();
+  Map<String, String> dateAndDay = {};
+  for (int i = 0; i < 7; i++) {
+    String date = DateFormat('yyyy-MM-dd').format(now.subtract(Duration(days: i)));
+    String day = DateFormat('EEE').format(now.subtract(Duration(days: i)));
+    dateAndDay[date] = day;
+  }
+  return dateAndDay;
+}
