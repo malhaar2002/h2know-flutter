@@ -1,22 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:h2know_flutter/models/leaderboard_model.dart';
 
 class LeaderboardTile extends StatelessWidget {
   const LeaderboardTile({
     super.key,
-    this.pfpNetwork = const NetworkImage('https://avatars.dicebear.com/api/avataaars/100.svg'),
-    this.pfpAsset = false,
-    this.name = '',
-    this.level = '',
-    this.rank = '',
-    this.highlighted = false,
+    required this.leaderboard,
   });
 
-  final ImageProvider<Object> pfpNetwork;
-  final bool pfpAsset;
-  final String name;
-  final String level;
-  final String rank;
-  final bool highlighted;
+  final LeaderboardModel leaderboard;
 
   @override
   Widget build(BuildContext context) {
@@ -29,25 +20,30 @@ class LeaderboardTile extends StatelessWidget {
           SizedBox(
             height: 90,
             child: ListTile(
-              tileColor: highlighted? const Color(0xFFDFF0FF) : Theme.of(context).scaffoldBackgroundColor,
+              tileColor: leaderboard.highlighted? const Color(0xFFDFF0FF) : Theme.of(context).scaffoldBackgroundColor,
               leading: CircleAvatar(
-                backgroundImage: pfpAsset ? const AssetImage('assets/images/profile_pic.jpg') : pfpNetwork,
-                radius: 40,
+                backgroundImage: leaderboard.topper ? const AssetImage('assets/images/gold_circle.png') : null,
+                backgroundColor: Colors.transparent,
+                radius: 50,
+                child: CircleAvatar(
+                  backgroundImage: leaderboard.pfpAsset ? const AssetImage('assets/images/profile_pic.jpg') : leaderboard.pfpNetwork,
+                  radius: leaderboard.topper ? 23 : 30,
+                ),
               ),
               title: Text(
-                name,
+                leaderboard.name,
                 style: const TextStyle(
                   fontFamily: 'Poppins',
                 ),
               ),
               subtitle: Text(
-                'Level $level',
+                'Level ${leaderboard.level}',
                 style: const TextStyle(
                   fontFamily: 'Poppins',
                 ),
               ),
               trailing: Text(
-                '# $rank',
+                '# ${leaderboard.rank}',
                 style: const TextStyle(
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.bold,

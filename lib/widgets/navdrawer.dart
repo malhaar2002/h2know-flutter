@@ -53,14 +53,14 @@ class NavDrawer extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, Dashboard.id)
           ),
           ListTile(
-            leading: const Icon(Icons.emoji_people),
-            title: const Text('Profile'),
-            onTap: () => Navigator.pushNamed(context, Profile.id)
-          ),
-          ListTile(
             leading: const Icon(Icons.leaderboard),
             title: const Text('Leaderboard'),
             onTap: () => Navigator.pushNamed(context, Leaderboard.id)
+          ),
+          ListTile(
+            leading: const Icon(Icons.emoji_people),
+            title: const Text('Profile'),
+            onTap: () => Navigator.pushNamed(context, Profile.id)
           ),
           ListTile(
             leading: const Icon(Icons.people),

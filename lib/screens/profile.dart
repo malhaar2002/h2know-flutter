@@ -4,7 +4,7 @@ import 'package:h2know_flutter/data/profile_info.dart';
 import 'package:h2know_flutter/screens/edit_profile.dart';
 import 'package:h2know_flutter/widgets/navdrawer.dart';
 import 'package:h2know_flutter/widgets/rounded_button.dart';
-import 'package:h2know_flutter/models/profile_data.dart';
+import 'package:h2know_flutter/models/profile_model.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 class Profile extends StatefulWidget {

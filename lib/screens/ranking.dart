@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:h2know_flutter/constants/colours.dart';
 import 'package:h2know_flutter/data/personal_info.dart';
-import 'package:h2know_flutter/models/ranking_data.dart';
+import 'package:h2know_flutter/models/ranking_model.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:h2know_flutter/widgets/navdrawer.dart';
 import 'package:h2know_flutter/data/ranking_info.dart';
