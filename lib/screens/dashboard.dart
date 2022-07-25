@@ -9,14 +9,15 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      backgroundColor: Colors.transparent,
       drawer: NavDrawer(),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: const Center(
-        child: Text('Your Dashboard'),
+      body: Center(
+        child: Image.asset('assets/images/background_tmp.png'),
       ),
     );
   }
