@@ -71,7 +71,7 @@ class _ProfileState extends State<Profile> {
       builder: (context, snapshot) {
         // if (snapshot.hasData) {
         return Scaffold(
-          drawer: NavDrawer(),
+          drawer: const NavDrawer(),
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,

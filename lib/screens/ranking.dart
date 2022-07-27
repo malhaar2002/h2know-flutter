@@ -44,7 +44,7 @@ class RankingGraph extends StatelessWidget {
       )
     ];
     return Scaffold(
-      drawer: NavDrawer(),
+      drawer: const NavDrawer(),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -185,7 +185,7 @@ class RankingGraph extends StatelessWidget {
                   const ListTile(
                     leading: Icon(Icons.arrow_drop_down_circle),
                     title: Text(
-                      'Individual Stats',
+                      'Average Stats',
                       style: TextStyle(fontFamily: 'Poppins'),
                     ),
                   ),

@@ -9,7 +9,7 @@ import 'package:h2know_flutter/screens/ranking.dart';
 import 'package:h2know_flutter/screens/welcome.dart';
 
 class NavDrawer extends StatelessWidget {
-  NavDrawer({super.key});
+  const NavDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {

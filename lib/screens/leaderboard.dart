@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:h2know_flutter/constants/get_random.dart';
 import 'package:h2know_flutter/data/leaderboard_info.dart';
-import 'package:h2know_flutter/data/profile_info.dart';
 import 'package:h2know_flutter/widgets/leadboard_listview.dart';
-import 'package:h2know_flutter/widgets/leaderboard_tile.dart';
 import 'package:h2know_flutter/widgets/navdrawer.dart';
 
 class Leaderboard extends StatefulWidget {
@@ -18,7 +15,7 @@ class _LeaderboardState extends State<Leaderboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavDrawer(),
+      drawer: const NavDrawer(),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,

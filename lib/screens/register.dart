@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:h2know_flutter/screens/splash_screen.dart';
 import 'package:h2know_flutter/widgets/form_field.dart';
@@ -6,7 +7,6 @@ import 'package:h2know_flutter/screens/login.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:h2know_flutter/constants/title_case.dart';
-import 'dart:convert';
 
 class Register extends StatefulWidget {
   const Register ({super.key});
@@ -22,7 +22,7 @@ class _RegisterState extends State<Register> {
   bool showSpinner = false;
   late String email;
   late String fullName;
-  late var floorNo;
+  late var floorNo = 0;
   late String password;
   late String repeatPassword;
 
@@ -65,8 +65,7 @@ class _RegisterState extends State<Register> {
                   placeholder: 'Floor Number',
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
-                    floorNo = value;
-                    floorNo = int.parse(floorNo);
+                    floorNo = int.parse(value);
                   },
                 ),
                 const SizedBox(height: 10),
@@ -148,15 +147,16 @@ class _RegisterState extends State<Register> {
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
                       } catch (e) {
-                        print(e);
+                        if (kDebugMode) {
+                          print(e);
+                        }
                       }
                     },
                     style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
+                      foregroundColor: Colors.white, padding: const EdgeInsets.symmetric(
                         horizontal: 100.0,
                         vertical: 15.0
                       ),
-                      primary: Colors.white,
                       backgroundColor: const Color(0xFF50C2C9),
                       shape: const StadiumBorder()
                     ),

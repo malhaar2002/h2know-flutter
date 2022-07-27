@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:h2know_flutter/data/current_user.dart';
 
-final _auth = FirebaseAuth.instance;
 final _firestore = FirebaseFirestore.instance;
 
 String loggedInUserName = 'null';

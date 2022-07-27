@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'register.dart';
 
 class Welcome extends StatelessWidget {
-  const Welcome ({super.key});
+  const Welcome({super.key});
   static const id = "welcome";
 
   @override
@@ -12,9 +12,8 @@ class Welcome extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Align(
-            alignment: Alignment.topLeft,
-            child: Image.asset('assets/images/top-left.png')
-          ),
+              alignment: Alignment.topLeft,
+              child: Image.asset('assets/images/top-left.png')),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,7 +31,9 @@ class Welcome extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               const Text(
                 'Paani Mat Waste Kar Na Bhai',
                 style: TextStyle(
@@ -46,28 +47,24 @@ class Welcome extends StatelessWidget {
                   Navigator.pushNamed(context, Register.id);
                 },
                 style: TextButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 60.0,
-                    vertical: 10.0
-                  ),
-                  primary: Colors.black,
-                  backgroundColor: Colors.cyan[100],
-                  shape: const StadiumBorder()
-                ),
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 60.0, vertical: 10.0),
+                    backgroundColor: Colors.cyan[100],
+                    shape: const StadiumBorder()),
                 child: const Text(
                   'Jump Onboard',
                   style: TextStyle(
                     fontSize: 18,
                   ),
                 ),
-              ),    
+              ),
             ],
           ),
           Align(
-            alignment: Alignment.bottomRight,
-            child: Image.asset('assets/images/bottom-right.png')
-          ),
-       ],
+              alignment: Alignment.bottomRight,
+              child: Image.asset('assets/images/bottom-right.png')),
+        ],
       ),
     );
   }
