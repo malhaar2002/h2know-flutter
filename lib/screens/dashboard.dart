@@ -14,10 +14,15 @@ class Dashboard extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
-      body: Center(
-        child: Image.asset('assets/images/background_tmp.png'),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/SwimPortraitGif.gif'),
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
     );
   }

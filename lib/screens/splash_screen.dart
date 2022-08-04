@@ -12,7 +12,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  
   @override
   void initState() {
     super.initState();
@@ -22,14 +21,32 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: AnimatedSplashScreen(
-          duration: 1000,
-          splash: Image.asset('assets/images/logo.png'),
-          splashIconSize: 250,
-          nextScreen: const Dashboard(),
-          splashTransition: SplashTransition.fadeTransition,
+      // body: Center(
+      //   child: AnimatedSplashScreen(
+      //     duration: 1000,
+      //     splash: Image.asset('assets/images/logo.png'),
+      //     splashIconSize: 250,
+      //     nextScreen: const Dashboard(),
+      //     splashTransition: SplashTransition.fadeTransition,
+      //   ),
+      // ),
+      body: FutureBuilder(
+        future: Future.delayed(
+          const Duration(seconds: 12),
+          () => Navigator.pushNamed(context, Dashboard.id)
         ),
+        builder: (context, snapshot) {
+          return Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  'assets/images/DivePortrait.gif',
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
+          );
+        },
       ),
     );
   }
