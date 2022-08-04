@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
+// import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:h2know_flutter/screens/dashboard.dart';
 import 'package:h2know_flutter/data/profile_info.dart';
 
