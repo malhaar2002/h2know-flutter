@@ -3,15 +3,10 @@ import 'package:h2know_flutter/data/leaderboard_info.dart';
 import 'package:h2know_flutter/widgets/leadboard_listview.dart';
 import 'package:h2know_flutter/widgets/navdrawer.dart';
 
-class Leaderboard extends StatefulWidget {
+class Leaderboard extends StatelessWidget {
   const Leaderboard({super.key});
   static const id = 'leaderboard';
 
-  @override
-  State<Leaderboard> createState() => _LeaderboardState();
-}
-
-class _LeaderboardState extends State<Leaderboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
