@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:h2know_flutter/dialogs/policy_dialog.dart';
-import 'package:h2know_flutter/screens/splash_screen.dart';
+import 'package:h2know_flutter/screens/diver_animation.dart';
 import 'package:h2know_flutter/widgets/form_field.dart';
 import 'package:h2know_flutter/screens/login.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -166,7 +166,7 @@ class _RegisterState extends State<Register> {
                               'full_name': fullName,
                               'level': 1
                             }).then((value) {
-                              Navigator.pushNamed(context, SplashScreen.id);
+                              Navigator.pushNamed(context, DiverAnimation.id);
                               setState(() {
                                 showSpinner = false;
                               });
