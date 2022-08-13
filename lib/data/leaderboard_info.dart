@@ -19,10 +19,10 @@ getLeaderboard() async {
       leaderboardList.add(LeaderboardModel(
         pfpNetwork:
             NetworkImage('https://avatars.dicebear.com/api/avataaars/$rng.jpg'),
-        pfpAsset: doc['email'] == loggedInUserEmail ? true : false,
+        pfpAsset: doc['username'] == loggedInUserUsername ? true : false,
         name: doc['full_name'],
         level: doc['level'],
-        highlighted: doc['email'] == loggedInUserEmail ? true : false,
+        highlighted: doc['username'] == loggedInUserUsername ? true : false,
       ));
     }
     leaderboardList.sort((b, a) => (a.level).compareTo(b.level));

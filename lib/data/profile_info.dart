@@ -4,7 +4,7 @@ import 'package:h2know_flutter/data/current_user.dart';
 final _firestore = FirebaseFirestore.instance;
 
 String loggedInUserName = 'null';
-String loggedInUserEmail = 'null';
+String loggedInUserUsername = 'null';
 String loggedInUserFloor = 'null';
 
 getUserData() async {
@@ -15,7 +15,7 @@ getUserData() async {
   .get()
   .then((value) async {
     loggedInUserName = await value.data()!['full_name'];
-    loggedInUserEmail = await value.data()!['email'];
+    loggedInUserUsername = await value.data()!['username'];
     int intFloor = await value.data()!['floor_no'];
     loggedInUserFloor = intFloor.toString();
   });

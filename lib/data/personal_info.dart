@@ -16,7 +16,8 @@ getTodayVolume() async {
   String username = createUsername(loggedInUser.email);
   DatabaseReference ref = _database.ref('$todayDate/$username');
   ref.onValue.listen((DatabaseEvent event) {
-    if (event.snapshot.value.runtimeType != Null) todayVolume = event.snapshot.value.toString();
+    if (event.snapshot.value.runtimeType != Null)
+      todayVolume = event.snapshot.value.toString();
   });
 }
 
@@ -50,16 +51,16 @@ getWeekVolume() async {
     (event) {
       Map<dynamic, dynamic> map = jsonDecode(jsonEncode(event.snapshot.value));
       map.forEach((key, value) {
-        Map<dynamic, dynamic> map2 = jsonDecode(jsonEncode(value));
-        map2.forEach(
-          (key2, value2) {
-            if (key2 == createUsername(loggedInUser.email)) {
-              if (getLastWeekDates().contains(key)) {
+        if (getLastWeekDates().contains(key)) {
+          Map<dynamic, dynamic> map2 = jsonDecode(jsonEncode(value));
+          map2.forEach(
+            (key2, value2) {
+              if (key2 == createUsername(loggedInUser.email)) {
                 sum += double.parse(value2.toString());
               }
-            }
-          },
-        );
+            },
+          );
+        }
       });
       weekVolume = sum.toString();
     },

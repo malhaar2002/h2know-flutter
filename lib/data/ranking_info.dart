@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:h2know_flutter/constants/get_date.dart';
 
 final _firestore = FirebaseFirestore.instance;
+final FirebaseDatabase _database = FirebaseDatabase.instance;
 
 String todayUniversity = '0';
 String averageUniversity = '0';
@@ -12,16 +16,17 @@ String lastWeekIndividual = '0';
 
 getTodayRanking() async {
   double sum = 0.0;
-  await _firestore
-  .collection('showers')
-  .where('date', isEqualTo: getDate())
-  .get()
-  .then((QuerySnapshot querySnapshot) async {
-    for (var doc in querySnapshot.docs) {
-      sum += doc['volume'].toDouble();
+  int ctrl = 0;
+  String todayDate = getDate();
+  DatabaseReference ref = _database.ref(todayDate);
+  ref.onValue.listen((DatabaseEvent event) {
+    Map<dynamic, dynamic> map = jsonDecode(jsonEncode(event.snapshot.value));
+    for (var element in map.values) {
+      sum += element;
+      ctrl++;
     }
     todayUniversity = sum.toString();
-    if (querySnapshot.size != 0) todayIndividualRanking = (sum/querySnapshot.size).toStringAsFixed(2);
+    if (ctrl != 0) todayIndividualRanking = (sum / ctrl).toStringAsFixed(2);
   });
 }
 
@@ -30,35 +35,43 @@ getAvgRanking() async {
   int ctrlInd = 0;
   int ctrlFlr = 0;
   List<String> visitedDates = [];
-  await _firestore
-  .collection('showers')
-  .get()
-  .then((QuerySnapshot querySnapshot) async {
-    for (var doc in querySnapshot.docs) {
-      sum += doc['volume'].toDouble();
-      ctrlInd++;
-      if (!visitedDates.contains(doc['date'])) {
-        ctrlFlr++;
-        visitedDates.add(doc['date']);
-      }
-    }
-    if (ctrlInd != 0) averageIndividualRanking = (sum/ctrlInd).toStringAsFixed(2);
-    if (ctrlFlr != 0) averageUniversity = (sum/ctrlFlr).toStringAsFixed(2);
-  });
- 
+  await _database.ref().once().then(
+    (DatabaseEvent event) {
+      Map<dynamic, dynamic> map = jsonDecode(jsonEncode(event.snapshot.value));
+      map.forEach((key, value) {
+        if (!visitedDates.contains(key)) {
+          visitedDates.add(key);
+          Map<dynamic, dynamic> map2 = jsonDecode(jsonEncode(value));
+          map2.forEach(
+            (key2, value2) {
+              sum += double.parse(value2.toString());
+              ctrlInd++;
+            },
+          );
+          ctrlFlr++;
+        }
+      });
+      averageUniversity = (sum / ctrlFlr).toStringAsFixed(2);
+      if (ctrlInd != 0) averageIndividualRanking = (sum / ctrlInd).toStringAsFixed(2);
+    },
+  );
 }
 
 getLastWeekRanking() async {
   double sum = 0.0;
-  await _firestore
-  .collection('showers')
-  .where('date', whereIn: getLastWeekDates())
-  .get()
-  .then((QuerySnapshot querySnapshot) {
-    for (var doc in querySnapshot.docs) {
-      sum += doc['volume'].toDouble();
-    }
+  int ctrl = 0;
+  await _database.ref().once().then((DatabaseEvent event) {
+    Map<dynamic, dynamic> map = jsonDecode(jsonEncode(event.snapshot.value));
+    map.forEach((key, value) {
+      if (getLastWeekDates().contains(key)) {
+        Map<dynamic, dynamic> map2 = jsonDecode(jsonEncode(value));
+        map2.forEach((key2, value2) {
+          sum += double.parse(value2.toString());
+          ctrl++;
+        });
+      }
+    });
     lastWeekUniversity = sum.toString();
-    if (querySnapshot.size != 0) lastWeekIndividual = (sum/querySnapshot.size).toStringAsFixed(2);
+    lastWeekIndividual = (sum / ctrl).toStringAsFixed(2);
   });
 }

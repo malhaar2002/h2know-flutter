@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:h2know_flutter/constants/create_username.dart';
 import 'package:h2know_flutter/dialogs/policy_dialog.dart';
 import 'package:h2know_flutter/screens/diver_animation.dart';
 import 'package:h2know_flutter/widgets/form_field.dart';
@@ -161,7 +162,7 @@ class _RegisterState extends State<Register> {
                             // Add to firestore database under collection 'users'
                             var collection = _firestore.collection('users');
                             collection.doc(email).set({
-                              'email': email,
+                              'username': createUsername(email),
                               'floor_no': floorNo,
                               'full_name': fullName,
                               'level': 1

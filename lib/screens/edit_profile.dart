@@ -13,7 +13,6 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,9 +20,7 @@ class _EditProfileState extends State<EditProfile> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(
-          color: Colors.black
-        ),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: FutureBuilder(
         future: getUserData(),
@@ -36,9 +33,8 @@ class _EditProfileState extends State<EditProfile> {
                   const Hero(
                     tag: 'profile_img',
                     child: CircleAvatar(
-                      backgroundImage: AssetImage(
-                        'assets/images/profile_pic.jpg'
-                      ),
+                      backgroundImage:
+                          AssetImage('assets/images/profile_pic.jpg'),
                       radius: 70,
                     ),
                   ),
@@ -50,12 +46,6 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                   const SizedBox(height: 30),
                   CustomTextField(
-                    text: loggedInUserEmail,
-                    label: 'Email Address',
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                  const SizedBox(height: 30),
-                  CustomTextField(
                     text: loggedInUserFloor,
                     label: 'Floor Number',
                     keyboardType: TextInputType.number,
@@ -63,7 +53,7 @@ class _EditProfileState extends State<EditProfile> {
                   const SizedBox(height: 50),
                   RoundedButton(
                     text: 'Update Profile',
-                    onPressed: (){},
+                    onPressed: () {},
                     colour: const Color(0xFF50C2C9),
                   )
                 ],
