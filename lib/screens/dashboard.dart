@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:h2know_flutter/screens/profile.dart';
 import 'package:h2know_flutter/widgets/navdrawer.dart';
 
 class Dashboard extends StatelessWidget {
@@ -15,6 +16,12 @@ class Dashboard extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.account_circle_rounded),
+            onPressed: () => Navigator.pushNamed(context, Profile.id),
+          ),
+        ],
       ),
       body: Container(
         decoration: const BoxDecoration(
