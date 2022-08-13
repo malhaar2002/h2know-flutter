@@ -7,6 +7,7 @@ import 'package:h2know_flutter/screens/dashboard.dart';
 import 'package:h2know_flutter/screens/diver_animation.dart';
 import 'package:h2know_flutter/screens/edit_profile.dart';
 import 'package:h2know_flutter/screens/leaderboard.dart';
+import 'package:h2know_flutter/screens/levels.dart';
 import 'package:h2know_flutter/screens/login.dart';
 import 'package:h2know_flutter/screens/my_floor.dart';
 import 'package:h2know_flutter/screens/ranking.dart';
@@ -70,6 +71,7 @@ class _HomeState extends State<Home> {
         SplashScreen.id: (context) => const SplashScreen(),
         Leaderboard.id: (context) => const Leaderboard(),
         DiverAnimation.id:(context) => const DiverAnimation(),
+        Levels.id:(context) => const Levels(),
       },
     );
   }

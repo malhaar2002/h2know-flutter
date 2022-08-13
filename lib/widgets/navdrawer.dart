@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:h2know_flutter/data/profile_info.dart';
 import 'package:h2know_flutter/screens/dashboard.dart';
 import 'package:h2know_flutter/screens/leaderboard.dart';
+import 'package:h2know_flutter/screens/levels.dart';
 import 'package:h2know_flutter/screens/my_floor.dart';
 import 'package:h2know_flutter/screens/profile.dart';
 import 'package:h2know_flutter/screens/ranking.dart';
@@ -56,6 +57,11 @@ class NavDrawer extends StatelessWidget {
             leading: const Icon(Icons.leaderboard),
             title: const Text('Leaderboard'),
             onTap: () => Navigator.pushNamed(context, Leaderboard.id)
+          ),
+          ListTile(
+            leading: const Icon(Icons.star),
+            title: const Text('Levels'),
+            onTap: () => Navigator.pushNamed(context, Levels.id)
           ),
           ListTile(
             leading: const Icon(Icons.emoji_people),
