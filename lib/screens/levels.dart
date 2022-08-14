@@ -3,30 +3,9 @@ import 'package:h2know_flutter/models/levels_model.dart';
 import 'package:h2know_flutter/widgets/levels.tile.dart';
 import 'package:h2know_flutter/widgets/navdrawer.dart';
 
-class Levels extends StatefulWidget {
+class Levels extends StatelessWidget {
   const Levels({super.key});
   static const id = 'levels';
-
-  @override
-  State<Levels> createState() => _LevelsState();
-}
-
-class _LevelsState extends State<Levels> {
-  final FixedExtentScrollController _controller = FixedExtentScrollController();
-  List<LevelTile> levelTiles = [];
-
-  @override
-  void initState() {
-    super.initState();
-    for (LevelModel element in levelsList) {
-      levelTiles.add(LevelTile(level: element));
-    }
-    _controller.animateToItem(
-      5,
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.linear,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,16 +16,29 @@ class _LevelsState extends State<Levels> {
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: Center(
-        child: ListWheelScrollView(
-          controller: _controller,
-          itemExtent: 100,
-          diameterRatio: 3,
-          // magnification: 1.2,
-          useMagnifier: true,
-          overAndUnderCenterOpacity: 0.5,
-          physics: const FixedExtentScrollPhysics(),
-          children: levelTiles,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Text(
+              'Levels',
+              style: TextStyle(
+                fontSize: 20,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 30),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: levelsList.length,
+              physics: const ScrollPhysics(),
+              itemBuilder:(context, index) {
+                return LevelTile(
+                  level: levelsList[index], 
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
