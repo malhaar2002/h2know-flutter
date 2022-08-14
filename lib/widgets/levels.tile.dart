@@ -7,29 +7,32 @@ class LevelTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-        leading: level.levelNo < 5
-            ? const Icon(
-                Icons.check_circle_outline,
-                color: Colors.green,
-              )
-            : const Icon(Icons.lock),
-        title: Text(
-          'Level ${level.levelNo}',
-          style: const TextStyle(
-            fontFamily: 'Poppins',
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 15),
+      child: ListTile(
+          leading: level.levelNo < 5
+              ? const Icon(
+                  Icons.check_circle_outline,
+                  color: Colors.green,
+                )
+              : const Icon(Icons.lock),
+          title: Text(
+            'Level ${level.levelNo}',
+            style: const TextStyle(
+              fontFamily: 'Poppins',
+            ),
           ),
-        ),
-        subtitle: Text(
-          level.description,
-        ),
-        trailing: level.levelNo == 4
-            ? const CircleAvatar(
-                backgroundImage: AssetImage(
-                  'assets/images/profile_pic.jpg',
-                ),
-                radius: 40,
-              )
-            : const SizedBox.shrink());
+          subtitle: Text(
+            level.description,
+          ),
+          trailing: level.levelNo == 4
+              ? const CircleAvatar(
+                  backgroundImage: AssetImage(
+                    'assets/images/profile_pic.jpg',
+                  ),
+                  radius: 40,
+                )
+              : const SizedBox.shrink()),
+    );
   }
 }

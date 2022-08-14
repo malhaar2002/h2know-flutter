@@ -27,7 +27,7 @@ class Levels extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 15),
             ListView.builder(
               shrinkWrap: true,
               itemCount: levelsList.length,
