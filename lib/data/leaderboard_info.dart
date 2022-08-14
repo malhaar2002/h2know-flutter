@@ -15,7 +15,7 @@ getLeaderboard() async {
       .get()
       .then((QuerySnapshot querySnapshot) {
     for (var doc in querySnapshot.docs) {
-      int rng = getRandom();
+      int rng = getRandom(0, 1000);
       leaderboardList.add(LeaderboardModel(
         pfpNetwork:
             NetworkImage('https://avatars.dicebear.com/api/avataaars/$rng.jpg'),
