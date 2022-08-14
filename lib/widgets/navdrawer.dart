@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:h2know_flutter/data/profile_info.dart';
 import 'package:h2know_flutter/screens/dashboard.dart';
+import 'package:h2know_flutter/screens/food_coupon.dart';
 import 'package:h2know_flutter/screens/leaderboard.dart';
 import 'package:h2know_flutter/screens/levels.dart';
 import 'package:h2know_flutter/screens/my_floor.dart';
@@ -77,6 +78,11 @@ class NavDrawer extends StatelessWidget {
             leading: const Icon(Icons.auto_graph),
             title: const Text('Rankings'),
             onTap: () => Navigator.pushNamed(context, RankingGraph.id)
+          ),
+          ListTile(
+            leading: const Icon(Icons.food_bank),
+            title: const Text('Food Coupon'),
+            onTap: () => Navigator.pushNamed(context, FoodCoupon.id)
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
