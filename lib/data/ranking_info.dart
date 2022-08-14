@@ -1,10 +1,7 @@
 import 'dart:convert';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:h2know_flutter/constants/get_date.dart';
 
-final _firestore = FirebaseFirestore.instance;
 final FirebaseDatabase _database = FirebaseDatabase.instance;
 
 String todayUniversity = '0';

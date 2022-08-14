@@ -16,8 +16,7 @@ getTodayVolume() async {
   String username = createUsername(loggedInUser.email);
   DatabaseReference ref = _database.ref('$todayDate/$username');
   ref.onValue.listen((DatabaseEvent event) {
-    if (event.snapshot.value.runtimeType != Null)
-      todayVolume = event.snapshot.value.toString();
+    if (event.snapshot.value.runtimeType != Null) todayVolume = event.snapshot.value.toString();
   });
 }
 

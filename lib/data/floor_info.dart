@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:h2know_flutter/data/current_user.dart';
 import 'package:h2know_flutter/data/profile_info.dart';
 import 'package:h2know_flutter/constants/get_date.dart';
 import 'dart:convert';
