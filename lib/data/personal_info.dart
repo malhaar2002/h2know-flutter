@@ -38,7 +38,7 @@ getAvgVolume() async {
           },
         );
       });
-      avgVolume = (sum / ctrl).toString();
+      avgVolume = (sum / ctrl).toStringAsFixed(2);
     },
   );
 }
@@ -61,7 +61,7 @@ getWeekVolume() async {
           );
         }
       });
-      weekVolume = sum.toString();
+      weekVolume = sum.toStringAsFixed(2);
     },
   );
 }
